@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Performance</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: gray; text-align: center; }
+        nav {
+            background: linear-gradient(90deg, #2575fc, #000000);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        nav h1 { color: white; font-size: 24px; font-weight: bold; margin-left: 20px; }
+        nav ul { list-style: none; display: flex; margin-right: 20px; }
+        nav ul li { margin: 0 15px; }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        nav ul li a:hover { color: #ffcc00; transform: scale(1.1); }
+        .container {
+            max-width: 800px;
+            margin: 80px auto 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+        h2 { color: #2575fc; margin-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        button { width: 100%; padding: 10px; background-color: #2575fc; color: white; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; }
+        button:hover { background-color: #1a5ed4; }
+        #response { margin-top: 15px; padding: 10px; background: #f4f4f4; border-radius: 5px; display: none; }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Analytic Performance</h1>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="training.html">Performance</a></li>
+            <li><a href="performance.html">Talent</a></li>
+            <li><a href="Additional.html">Additional</a></li>
+        </ul>
+    </nav>
+
+    <!-- Ask AI a Question Form -->
+    <div class="container">
+        <h2>Ask AI a Question</h2>
+        <form id="question-form">
+            <div class="form-group">
+                <label for="question">Enter your question:</label>
+                <input type="text" id="question" name="question" required>
+            </div>
+            <button type="submit">Ask AI</button>
+        </form>
+
+        <div id="response"></div>
+    </div>
+
+    <!-- Athlete Info Form -->
+    <div class="container">
+        <h2>Athlete Performance</h2>
+        <form id="ai-form">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="skill">Skill Level:</label>
+                <select id="skill" name="skill" required>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sports">Select Sport:</label>
+                <select id="sports" name="sports" required>
+                    <option value="Football">Football</option>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Swimming">Swimming</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Handle AI Question Submission
+        document.getElementById("question-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const question = document.getElementById("question").value;
+            const responseDiv = document.getElementById("response");
+            responseDiv.style.display = "block";
+            responseDiv.textContent = "Thinking...";
+
+            const apiKey = "YOUR_OPENAI_API_KEY"; // Replace with your OpenAI API key
+            const url = "https://api.openai.com/v1/completions";
+            const data = {
+                model: "gpt-4",
+                prompt: question,
+                max_tokens: 100
+            };
+
+            try {
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                responseDiv.textContent = result.choices[0].text.trim();
+            } catch (error) {
+                responseDiv.textContent = "Error: Unable to fetch AI response.";
+            }
+        });
+
+        // Handle Athlete Info Submission
+        document.getElementById("ai-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const skill = document.getElementById("skill").value;
+            const sports = document.getElementById("sports").value;
+            const responseDiv = document.getElementById("response");
+            responseDiv.style.display = "block";
+            responseDiv.textContent = `Thank you ${name}, you are a ${age}-year-old ${skill} level athlete in ${sports}.`;
+        });
+    </script>
+</body>
+</html>

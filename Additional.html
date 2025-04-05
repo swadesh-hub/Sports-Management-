@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additional Support</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: gray;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: linear-gradient(90deg, #2575fc, #000000);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav h1 {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin-right: 20px;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        
+        nav ul li a:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+        h2 {
+            color: #2575fc;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f0f0;
+            border-left: 5px solid #2575fc;
+            border-radius: 5px;
+        }
+        .enroll-form {
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1a5ed4;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>Additional Support</h1>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="training.html">Performance</a></li>
+            <li><a href="performance.html">Talent</a></li>
+            <li><a href="Additional.html">Additional</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Sports Psychology</h2>
+        <div class="section">
+            <p>Improve mental toughness and focus with expert-led psychology programs.</p>
+            <p>Learn stress management techniques for high-pressure games.</p>
+            <p>Access personal counseling for confidence-building and performance enhancement.</p>
+        </div>
+        <h2>Injury Recovery Plans</h2>
+        <div class="section">
+            <p>Get personalized recovery plans designed by professional physiotherapists.</p>
+            <p>Follow rehabilitation exercises and progress tracking.</p>
+            <p>Receive nutrition and fitness guidance for faster healing.</p>
+        </div>
+        
+        <h2>Select Your Injury Type</h2>
+        <div class="section">
+            <form action="#" method="post">
+                <label for="injuryType">Choose Injury Type:</label>
+                <select id="injuryType" name="injuryType" required>
+                    <option value="Muscle Strain">Muscle Strain</option>
+                    <option value="Ligament Sprain">Ligament Sprain</option>
+                    <option value="Fracture">Fracture</option>
+                    <option value="Dislocation">Dislocation</option>
+                    <option value="Tendonitis">Tendonitis</option>
+                    <option value="Concussion">Concussion</option>
+                    <option value="Shin Splints">Shin Splints</option>
+                </select>
+                <button type="submit">Get Recovery Plan</button>
+            </form>
+        </div>
+        
+
+        <h2>Media & Branding</h2>
+        <div class="section">
+            <p>Build your personal brand and gain sponsorship opportunities.</p>
+            <p>Get expert assistance with social media management and media exposure.</p>
+            <p>Showcase your achievements through digital marketing and athlete PR campaigns.</p>
+        </div>
+
+        <div class="container enroll-form">
+            <h2>Request Additional Support</h2>
+            <form action="#" method="post">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="supportType">Select Support Service</label>
+                <select id="supportType" name="supportType" required>
+                    <option value="Sports Psychology">Sports Psychology</option>
+                    <option value="Injury Recovery Plans">Injury Recovery Plans</option>
+                    <option value="Media & Branding">Media & Branding</option>
+                </select>
+
+                <label for="message">Specific Requirements</label>
+                <textarea id="message" name="message" rows="3"></textarea>
+
+                <button type="submit">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
